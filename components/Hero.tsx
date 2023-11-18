@@ -2,6 +2,7 @@
 import React from "react";
 import { CustomButton } from ".";
 import Image from "next/image";
+import Link from "next/link";
 
 const Hero = () => {
   const handleScroll = () => {};
@@ -15,11 +16,13 @@ const Hero = () => {
           Streamline your car rental experience with our effortless booking
           process.
         </p>
-        <CustomButton
-          title="Explore cars"
-          containerStyles="bg-primary-blue text-white rounded-full mt-10"
-          handleClick={handleScroll}
-        />
+        <Link href="#scroll-target-explore-more" >
+          <CustomButton
+            title="Explore cars"
+            containerStyles="bg-primary-blue text-white rounded-full mt-10"
+            handleClick={handleScroll}
+          />
+        </Link>
       </div>
       <div className="xl:flex-[1.5] flex justify-end items-end w-full xl:h-screen">
         <div className="relative xl:w-full w-[90%] xl:h-full h-[590px] z-0">

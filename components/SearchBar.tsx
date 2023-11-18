@@ -41,6 +41,8 @@ const SearchBar = () => {
     } else {
       searchParams.delete("manufacturer");
     }
+    searchParams.delete("limit");
+    searchParams.delete("fuel");
     const newPathname = `${
       window.location.pathname
     }?${searchParams.toString()}`;

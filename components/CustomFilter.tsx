@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, Fragment } from "react";
+import { useState, Fragment, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Listbox, Transition } from "@headlessui/react";
@@ -9,12 +9,30 @@ import { updateSearchParams } from "@/utils";
 
 const CustomFilter = ({ title, options }: CustomFilterProps) => {
   const router = useRouter();
+
+  const searchParams = new URLSearchParams(window.location.search);
+
+  // Find the selected option based on the title from searchParams
+//   const selectedOption = options.find(
+//     (option) =>
+//       option.title.toLowerCase() === searchParams.get(title)?.toLowerCase()
+//   );
+
   const [selected, setSelected] = useState(options[0]);
 
   const handleUpdateParams = (e: { title: string; value: string }) => {
     const newPathname = updateSearchParams(title, e.value.toLowerCase());
     router.push(newPathname, { scroll: false });
   };
+  useEffect(() => {
+    // Find the selected option based on the title from searchParams
+    const selectedOption = options.find(
+      (option) => option.title.toLowerCase() === searchParams.get(title)?.toLowerCase()
+    );
+
+    // Set the selected option to the first option if not found
+    setSelected(selectedOption || options[0]);
+  }, [searchParams, title, options]);
   return (
     <div className="w-fit">
       <Listbox
@@ -55,7 +73,7 @@ const CustomFilter = ({ title, options }: CustomFilterProps) => {
                   {({ selected }) => (
                     <span
                       className={`block truncate ${
-                        selected ? "font-medium" : "font-normal"
+                        selected ? "font-extrabold" : "font-normal"
                       }`}
                     >
                       {option.title}

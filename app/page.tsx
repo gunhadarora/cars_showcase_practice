@@ -21,7 +21,7 @@ export default async function Home({ searchParams }:HomeProps) {
         className="mt-12 sm:px-16 px-6 py-4 max-w-[1440px] mx-auto"
         id="discover"
       >
-        <div className="flex flex-col items-start justify-start gap-y-2.5 text-black-100">
+        <div className="flex flex-col items-start justify-start gap-y-2.5 text-black-100" id="scroll-target-explore-more">
           <h1 className="text-4xl font-extrabold">Car Catalogue</h1>
           <p>Explore the cars you like.</p>
         </div>
